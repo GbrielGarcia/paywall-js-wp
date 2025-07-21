@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Paywall.js WP
-Plugin URI: https://github.com/GbrielGarcia/paywall-js
+Plugin URI: https://github.com/GbrielGarcia/paywall-js-wp
 Description: Integra Paywall.js en tu sitio WordPress para proteger el sitio cuando el cliente no paga, mostrando efectos visuales automáticos.
 Version: 1.0.2
 Author: Alberto Guaman (@GbrielGarcia) - Tinguar
@@ -39,12 +39,7 @@ class Paywall_JS_WP {
         add_action('admin_init', array($this, 'paywall_js_wp_settings_init'));
         add_action('wp_enqueue_scripts', array($this, 'paywall_js_wp_enqueue_paywall_js'));
         add_action('wp_footer', array($this, 'paywall_js_wp_inject_paywall_config'));
-        add_action('plugins_loaded', array($this, 'paywall_js_wp_load_textdomain'));
         add_action('admin_enqueue_scripts', array($this, 'paywall_js_wp_enqueue_admin_assets'));
-    }
-
-    public function paywall_js_wp_load_textdomain() {
-        load_plugin_textdomain('paywall-js-wp', false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
 
     public function paywall_js_wp_add_admin_menu() {
@@ -137,7 +132,7 @@ class Paywall_JS_WP {
     public function paywall_js_wp_field_enabled() {
         $options = get_option('paywall_js_wp_options');
         $checked = !isset($options['enabled']) || $options['enabled'] ? 'checked' : '';
-        echo '<input type="checkbox" name="paywall_js_wp_options[enabled]" value="1" ' . $checked . ' /> ' . __('Activar el paywall en el sitio', 'paywall-js-wp');
+        echo '<input type="checkbox" name="paywall_js_wp_options[enabled]" value="1" ' . esc_attr($checked) . ' /> ' . esc_html__('Activar el paywall en el sitio', 'paywall-js-wp');
     }
 
     public function paywall_js_wp_field_due_date() {
@@ -175,7 +170,7 @@ class Paywall_JS_WP {
 
     public function paywall_js_wp_enqueue_paywall_js() {
         if (is_admin()) return;
-        wp_enqueue_script('paywall-js', 'https://unpkg.com/paywall-js@1.0.0/dist/paywall.min.js', array(), '1.0.0', true);
+        wp_enqueue_script('paywall-js', plugin_dir_url(__FILE__) . 'assets/paywall.min.js', array(), '1.0.0', true);
     }
 
     public function paywall_js_wp_enqueue_admin_assets($hook) {
@@ -193,14 +188,17 @@ class Paywall_JS_WP {
         $color = !empty($options['color']) ? esc_js($options['color']) : '#ff0000';
         $gradient_from = !empty($options['gradient_from']) ? esc_js($options['gradient_from']) : '#ff0000';
         $gradient_to = !empty($options['gradient_to']) ? esc_js($options['gradient_to']) : '#000000';
-        echo "<script>window.addEventListener('DOMContentLoaded',function(){new Paywall({dueDate:'{$options['due_date']}',daysDeadline:{$days_deadline},effect:'{$effect}',color:'{$color}',gradientFrom:'{$gradient_from}',gradientTo:'{$gradient_to}'})});</script>";
+        $due_date = esc_js($options['due_date']);
+        echo '<script>';
+        echo "window.addEventListener('DOMContentLoaded',function(){new Paywall({dueDate:'{$due_date}',daysDeadline:{$days_deadline},effect:'{$effect}',color:'{$color}',gradientFrom:'{$gradient_from}',gradientTo:'{$gradient_to}'})});";
+        echo '</script>';
     }
 
     public function paywall_js_wp_options_page() {
         if (!current_user_can('manage_options')) return;
         ?>
         <div class="wrap paywall-js-wp-admin-wrap">
-            <h1><?php _e('Paywall.js - Protección de Sitio por Falta de Pago', 'paywall-js-wp'); ?></h1>
+            <h1><?php esc_html_e('Paywall.js - Protección de Sitio por Falta de Pago', 'paywall-js-wp'); ?></h1>
             <form action="options.php" method="post" id="paywall-js-wp-form">
                 <?php
                 settings_fields('paywall_js_wp');

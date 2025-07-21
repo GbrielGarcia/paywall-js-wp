@@ -100,7 +100,7 @@ MIT License
 
 ## 🔗 Enlaces Importantes
 
-- **Repositorio GitHub:** https://github.com/GbrielGarcia/paywall-js
+- **Repositorio GitHub:** https://github.com/GbrielGarcia/paywall-js-wp
 - **Paywall.js en npm:** https://www.npmjs.com/package/paywall-js
 - **Sitio de la agencia:** https://tinguar.com
 

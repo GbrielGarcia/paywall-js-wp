@@ -3,11 +3,13 @@ Contributors: GbrielGarcia, Tinguar
 Donate link: https://tinguar.com
 Tags: paywall, pagos, contenido, membresía, protección
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Paywall.js WP protege tu sitio WordPress cuando el cliente no paga, mostrando efectos visuales automáticos.
 
 == Description ==
 

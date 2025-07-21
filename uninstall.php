@@ -4,6 +4,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit();
 }
 // Eliminar las opciones del plugin
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 if (is_multisite()) {
     global $wpdb;
     $blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
