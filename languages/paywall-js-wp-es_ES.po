@@ -1,0 +1,29 @@
+msgid "Paywall.js"
+msgstr "Paywall.js"
+
+msgid "Configuración de Paywall.js"
+msgstr "Configuración de Paywall.js"
+
+msgid "Fecha de vencimiento"
+msgstr "Fecha de vencimiento"
+
+msgid "Días de plazo"
+msgstr "Días de plazo"
+
+msgid "Efecto visual"
+msgstr "Efecto visual"
+
+msgid "Color sólido"
+msgstr "Color sólido"
+
+msgid "Gradiente desde"
+msgstr "Gradiente desde"
+
+msgid "Gradiente hasta"
+msgstr "Gradiente hasta"
+
+msgid "Paywall.js - Protección de Sitio por Falta de Pago"
+msgstr "Paywall.js - Protección de Sitio por Falta de Pago"
+
+msgid "Inspirado en @kleampa. Mejorado y publicado por Alberto Guaman (@GbrielGarcia) - Tinguar."
+msgstr "Alberto Guaman (@GbrielGarcia) - Tinguar. (www.tinguar.com)" 

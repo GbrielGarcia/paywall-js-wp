@@ -1,0 +1,35 @@
+.paywall-js-wp-admin-wrap {
+  background: #fff;
+  border-radius: 8px;
+  padding: 32px 24px 24px 24px;
+  max-width: 700px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.paywall-js-wp-admin-wrap h1 {
+  margin-bottom: 24px;
+}
+.paywall-js-wp-admin-wrap form table.form-table th {
+  width: 220px;
+}
+.paywall-js-wp-admin-wrap input[type="color"] {
+  width: 48px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.paywall-js-wp-admin-wrap input[type="date"],
+.paywall-js-wp-admin-wrap input[type="number"],
+.paywall-js-wp-admin-wrap select {
+  min-width: 160px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccd0d4;
+}
+.paywall-js-wp-admin-wrap input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+.paywall-js-wp-admin-wrap .form-table tr {
+  transition: all 0.2s;
+} 
