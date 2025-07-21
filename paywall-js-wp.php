@@ -184,14 +184,25 @@ class Paywall_JS_WP {
         $options = get_option('paywall_js_wp_options');
         if (empty($options['due_date']) || empty($options['enabled'])) return;
         $days_deadline = !empty($options['days_deadline']) ? intval($options['days_deadline']) : 60;
-        $effect = !empty($options['effect']) ? esc_js($options['effect']) : 'gradient';
-        $color = !empty($options['color']) ? esc_js($options['color']) : '#ff0000';
-        $gradient_from = !empty($options['gradient_from']) ? esc_js($options['gradient_from']) : '#ff0000';
-        $gradient_to = !empty($options['gradient_to']) ? esc_js($options['gradient_to']) : '#000000';
-        $due_date = esc_js($options['due_date']);
-        echo '<script>';
-        echo "window.addEventListener('DOMContentLoaded',function(){new Paywall({dueDate:'{$due_date}',daysDeadline:{$days_deadline},effect:'{$effect}',color:'{$color}',gradientFrom:'{$gradient_from}',gradientTo:'{$gradient_to}'})});";
-        echo '</script>';
+        $effect = !empty($options['effect']) ? $options['effect'] : 'gradient';
+        $color = !empty($options['color']) ? $options['color'] : '#ff0000';
+        $gradient_from = !empty($options['gradient_from']) ? $options['gradient_from'] : '#ff0000';
+        $gradient_to = !empty($options['gradient_to']) ? $options['gradient_to'] : '#000000';
+        $due_date = $options['due_date'];
+        ?>
+        <script>
+        window.addEventListener('DOMContentLoaded',function(){
+            new Paywall({
+                dueDate: '<?php echo esc_js($due_date); ?>',
+                daysDeadline: <?php echo esc_js($days_deadline); ?>,
+                effect: '<?php echo esc_js($effect); ?>',
+                color: '<?php echo esc_js($color); ?>',
+                gradientFrom: '<?php echo esc_js($gradient_from); ?>',
+                gradientTo: '<?php echo esc_js($gradient_to); ?>'
+            });
+        });
+        </script>
+        <?php
     }
 
     public function paywall_js_wp_options_page() {
